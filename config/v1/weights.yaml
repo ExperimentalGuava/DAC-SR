@@ -1,0 +1,87 @@
+schema_version: "1.0.0"
+
+components:
+  VOL: 0.20
+  LIQ: 0.20
+  DEC: 0.20
+  ONC: 0.20
+  VAL: 0.20
+
+knees:
+  BTC:
+    VOL:
+      sigma_lo: 0.35
+      sigma_hi: 1.20
+      mdd_lo: 0.10
+      mdd_hi: 0.40
+
+    LIQ:
+      depth10_lo: 250000
+      depth10_hi: 5000000
+      spread_lo: 0.002
+      spread_hi: 0.02
+      slip100k_lo: 0.0005
+      slip100k_hi: 0.01
+
+    DEC:
+      hhi_lo: 0.25
+      hhi_hi: 0.70
+      gini_lo: 0.55
+      gini_hi: 0.90
+      exfloat_lo: 0.10
+      exfloat_hi: 0.30
+
+    ONC:
+      tx24h_lo: 150000        # lower activity bound
+      tx24h_hi: 450000        # strong activity bound
+      addr24h_lo: 400000
+      addr24h_hi: 1200000
+      fees_per_tx_usd_lo: 2.0   # lower fee is healthier (inverse mapping)
+      fees_per_tx_usd_hi: 20.0  # higher fee is worse
+
+    VAL:
+      varhash_lo: 0.02
+      varhash_hi: 0.20
+      dividx_lo: 0.40
+      dividx_hi: 0.80
+      reorg_lo: 2
+      reorg_hi: 10
+
+  ETH:
+    VOL:
+      sigma_lo: 0.45
+      sigma_hi: 1.50
+      mdd_lo: 0.12
+      mdd_hi: 0.45
+
+    LIQ:
+      depth10_lo: 200000
+      depth10_hi: 3000000
+      spread_lo: 0.003
+      spread_hi: 0.03
+      slip100k_lo: 0.0008
+      slip100k_hi: 0.015
+
+    DEC:
+      hhi_lo: 0.30
+      hhi_hi: 0.75
+      gini_lo: 0.58
+      gini_hi: 0.92
+      exfloat_lo: 0.12
+      exfloat_hi: 0.35
+
+    ONC:
+      tx24h_lo: 600000
+      tx24h_hi: 1800000
+      addr24h_lo: 250000
+      addr24h_hi: 900000
+      fees_per_tx_usd_lo: 0.5   # lower fee is healthier
+      fees_per_tx_usd_hi: 25.0  # higher fee is worse
+
+    VAL:
+      varhash_lo: 0.03
+      varhash_hi: 0.25
+      dividx_lo: 0.45
+      dividx_hi: 0.85
+      reorg_lo: 3
+      reorg_hi: 12

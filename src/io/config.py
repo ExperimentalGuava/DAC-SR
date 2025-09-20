@@ -1,21 +1,27 @@
-# src/io/config.py
-from pathlib import Path
+import os
 import yaml
+from pathlib import Path
+from typing import Optional
 
-from dotenv import load_dotenv
-load_dotenv()
+_CFG = None
+_CFG_PATH: Optional[Path] = None
 
-_CFG = None  # module-level cache
-
-
-def load_config(path: str = "config/v1/weights.yaml"):
+def load_config(path: str = None, *, force: bool = False):
     """
-    Lazy-load and cache the SR weights/knees config.
+    Load and cache SR config. Set SR_CONFIG_PATH to override default.
+    Use force=True to bypass cache (for debugging/reloads).
     """
-    global _CFG
-    if _CFG is None:
-        text = Path(path).read_text(encoding="utf-8")
+    global _CFG, _CFG_PATH
+    if path is None:
+        path = os.getenv("SR_CONFIG_PATH", "config/v1/weights.yaml")
+
+    cfg_path = Path(path).resolve()
+
+    if force or _CFG is None or _CFG_PATH != cfg_path:
+        text = cfg_path.read_text(encoding="utf-8")
         _CFG = yaml.safe_load(text)
-        if not isinstance(_CFG, dict):
-            raise ValueError("Config must be a YAML mapping at the top level.")
+        _CFG_PATH = cfg_path
+        # simple trace
+        print(f"[dac-sr] loaded config: {_CFG_PATH}")
+
     return _CFG
