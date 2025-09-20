@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+
+
+[project]
+name = "dac-sr"
+version = "0.1.0"
+description = "Digital Asset Custodians — Stability Rating service"
+authors = [{name = "Digital Asset Custodians"}]
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "pydantic>=2",
+    "httpx",
+    "aiohttp",
+    "pandas",
+    "numpy",
+]
+
+
+[tool.ruff]
+line-length = 100
